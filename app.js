@@ -12,7 +12,7 @@ let psg_login = require('./routes/passenger-login-register');  //乘客登录
 let cmpy_login = require('./routes/company_login');
 let search = require('./routes/search');    //查询机票 购票
 // var cmy_insert = require('./routes/insert-new-airline');  //航空公司增加航班
-// var order = require('./routes/order');          //查看订单，退票
+let order = require('./routes/order');          //查看订单，退票
 
 var app = express();
 
@@ -38,7 +38,7 @@ app.use('/passenger-login-register', psg_login);
 app.use('/company-login', cmpy_login);
 app.use('/search', search);
 // app.use('/insert-new-airline', cmy_insert);
-// app.use('/order', order);
+app.use('/order', order);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

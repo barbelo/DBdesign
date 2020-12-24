@@ -54,6 +54,10 @@
     </tbody>
 </table>
 
+<!--    <div class="ui visible message">-->
+<!--        <p v-text="status" ></p>-->
+<!--    </div>-->
+
 </div>
 <script>
     let vm = new Vue({
@@ -62,7 +66,7 @@
             data: '',
             departure: '',
             arrival: '',
-            status: '',
+            status: '123',
             list: []
         },
         created() {
@@ -100,19 +104,19 @@
                 }
             },
             clickBuy(ticket){
-                if(sessionStorage.getItem('flag')){
+                if(sessionStorage.getItem('passenger')){
 
                     axios.post('/search/buy', {
-                        username: sessionStorage.getItem('flag'),
+                        username: sessionStorage.getItem('passenger'),
                         airline: ticket.airline,
                         seat: ticket.seat,
                         data: ticket.data
                     }).then(function (response) {
                         console.log(response);
-                        if(response.code === 300){
+                        if(response.data.code === 300){
                             self.status = '票被别人抢走了';
                             alert(self.status);
-                        } else if(response.code === 200){
+                        } else if(response.data.code === 200){
                             self.status = '票是你的啦^_^';
                             alert(self.status);
                             window.location.href = '/order';

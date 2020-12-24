@@ -68,7 +68,7 @@
                     }).then(function (response) {
                         if (response.data.code === 200) {
                             console.log(response);
-                            sessionStorage.setItem('flag', self.username);
+                            sessionStorage.setItem('passenger', self.username);
                             window.location.href = '/search';
                         } else {
                             self.status = '用户名或密码错误，请重新输入！';
