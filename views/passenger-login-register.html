@@ -66,9 +66,9 @@
                         username: self.username,
                         password: self.password
                     }).then(function (response) {
-                        console.log(response);
-                        if (response.code === 200) {
-                            sessionStorage.setItem('flag', username);
+                        if (response.data.code === 200) {
+                            console.log(response);
+                            sessionStorage.setItem('flag', self.username);
                             window.location.href = '/search';
                         } else {
                             self.status = '用户名或密码错误，请重新输入！';

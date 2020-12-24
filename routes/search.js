@@ -21,6 +21,8 @@ router.post('/', function (req, res, next) {
     let departure_airport = req.body.departure;
     let arrival_airport = req.body.arrival; //获取前台请求的参数
 
+    console.log("search", data);
+
     pool.getConnection(function (err, connection) {
         //先判断该账号是否存在
         let $sql = "select " +
@@ -45,10 +47,10 @@ router.post('/', function (req, res, next) {
                         seat: x.seat_id,
                         from_time:x.departure_T,
                         to_time:x.arrival_T,
-                        data:x.dataa_
+                        data:req.body.data
                     }));
-            // }
-            // console.log("we get result.");
+
+                console.log("searchresult:", resultJson);
             // console.log(resultJson);
             res.json(resultJson);
             connection.release();
@@ -58,47 +60,50 @@ router.post('/', function (req, res, next) {
 });
 
 router.post('/buy', function (req, res, next) {
-    console.log(req.body);
 
-    let username = req.body.data;
+
+    let username = req.body.username;
     let airline_id = req.body.airline;
     let seat_id = req.body.seat;
-    let data = req.body.data;
+    let data = req.body.data.substr(0, 10);
 
     pool.getConnection(function (err, connection) {
         //先判断票还是不是可以买的
         let $sql = "select ticket_id, is_sale" +
-            "from ticket" +
-            "where seat_id = ?" +
-            "and airline_id = ?" +
-            "and dataa_ = ?"
+            " from ticket" +
+            " where seat_id = ?" +
+            " and airline_id = ?" +
+            " and dataa_ = ?"
         ;
 
-        connection.query($sql, [seat_id, airline_id, dataa_], function (err, result) {
+        connection.query($sql, [seat_id, airline_id, data], function (err, result) {
+            // console.log($sql, [seat_id, airline_id, data]);
+            console.log(result);
             if (result[0].is_sale){
-                result = {
+                let resultJson = {
                     code: 300,
                     msg: '被买了'
                 };
-                res.json(result);
+                res.json(resultJson);
                 connection.release();
             }
             else{
                 let $sql1 = "update ticket " +
-                    "set is_sale = true" +
-                    "where ticket_id = ?";
-                let $sql2 = "insert into order VALUE(default, ?, ?)";
+                    " set is_sale = true" +
+                    " where ticket_id = ?";
+                let $sql2 = "insert into orders VALUES(default, ?, ?)";
 
                 connection.query($sql1, [result[0].ticket_id], function (err1, result1) {
-                    console.log(err);
+                    // console.log(err1);
 
                     connection.query($sql2, [result[0].ticket_id, username], function (err2, result2) {
-                        // console.log(er);
-                        result = {
+                        console.log($sql2, [result[0].ticket_id, username]);
+                        let resultJson = {
                             code: 200,
                             msg: 'success'
                         };
-                        res.json(result);
+                        console.log(resultJson);
+                        res.json(resultJson);
                         connection.release();
                     });
                 });
