@@ -31,10 +31,10 @@ router.post('/', function (req, res, next) {
 
         let $sql = "select ticket.airline_id, seat_id, dataa_, " +
             " departure_airport, arrival_airport" +
-            " from airline, ticket, order" +
+            " from airline, ticket, orders" +
             " where airline.airline_id = ticket.airline_id" +
-            " and order.name = ?" +
-            " and order.ticket_id = ticket.ticket_id"
+            " and orders.name = ?" +
+            " and orders.ticket_id = ticket.ticket_id"
         ;
 
         connection.query($sql, [username], function (err, result) {

@@ -78,7 +78,7 @@ router.post('/buy', function (req, res, next) {
 
         connection.query($sql, [seat_id, airline_id, data], function (err, result) {
             // console.log($sql, [seat_id, airline_id, data]);
-            console.log(result);
+            // console.log(result);
             if (result[0].is_sale){
                 let resultJson = {
                     code: 300,
@@ -88,18 +88,20 @@ router.post('/buy', function (req, res, next) {
                 connection.release();
             }
             else{
+                //确认没有买过同一班航班
                 let $sql3 = "select * from orders, ticket" +
                     " where orders.name = ?" +
                     " and orders.ticket_id = ticket.ticket_id" +
-                    " and orders.ticket_id = ?" +
+                    " and ticket.airline_id = ?" +
                     " and ticket.dataa_ = ?";
                 // let $sql1 = "update ticket " +
                 //     " set is_sale = true" +
                 //     " where ticket_id = ?";
                 let $sql2 = "insert into orders VALUES(default, ?, ?)";
-                connection.query($sql3, [username, result[0].ticket_id, data], function (err3, result3){
-
-                    if(result3.length > 0){
+                connection.query($sql3, [username, airline_id, data], function (err3, result3){
+                    console.log("double check", result3);
+                    console.log($sql3, [username, airline_id, data]);
+                    if(result3?.length > 0){
                         let resultJson = {
                             code: 350,
                             msg: '买过了'
@@ -112,7 +114,7 @@ router.post('/buy', function (req, res, next) {
                             // console.log(err1);
 
                             connection.query($sql2, [result[0].ticket_id, username], function (err2, result2) {
-                                console.log($sql2, [result[0].ticket_id, username]);
+                                // console.log($sql2, [result[0].ticket_id, username]);
                                 let resultJson = {
                                     code: 200,
                                     msg: 'success'
@@ -123,10 +125,7 @@ router.post('/buy', function (req, res, next) {
                             });
                         // });
                     }
-
                 });
-
-
             }
         });
     });

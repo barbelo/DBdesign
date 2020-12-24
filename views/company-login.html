@@ -3,38 +3,59 @@
 <head>
 
     <title> title </title>
+    <link rel='stylesheet' href="stylesheets/semantic.min.css" />
     <link rel='stylesheet' href='stylesheets/style.css' />
 
+    <script src="javascripts/jquery.js"></script>
     <script src="javascripts/vue.js"></script>
     <script src="javascripts/axios.js"></script>
+    <script src="javascripts/semantic.min.js"></script>
 
 </head>
 <body>
-<h1>title </h1>
-<p>Welcome to title</p>
+
+
+<h1> passenger-login </h1>
+<p>Welcome to passenger-login</p>
+
+<div id = "login">
+    <div class = "ui input">
+        <input type="text" v-model = "username">
+        <input type="password" v-model = "password">
+    </div>
+
+    <button class="ui blue button" v-on:click = "login">
+        login
+    </button>
+
+</div>
 
 <script>
-    let vm = new Vue({
-        el: '#app',
+    let vmlogin = new Vue({
+        self: this,
+        el: '#login',
         data:{
             companyname: '',
             password: '',
             status: ''
         },
         created() {
-            self = this;
         },
         methods: {
             login() {
+                let self = this;
                 if (self.companyname && self.password) {
-                    axios.post('/', {
+                    axios.post('/company-login', {
                         companyname: self.companyname,
                         password: self.password
                     }).then(function (response) {
-                        if (response.code === 200) {
-                            window.location.href = '/';
+                        if (response.data.code === 200) {
+                            console.log(response);
+                            sessionStorage.setItem('company', self.companyname);
+                            window.location.href = '/insert-new-airline';
                         } else {
-                            self.status = '航空公司代码或密码错误，请重新输入！';
+                            self.status = '用户名或密码错误，请重新输入！';
+                            alert(self.status);
                         }
                     }).catch(function (error){
                         console.log(error);
@@ -45,8 +66,6 @@
         }
     })
 </script>
-
-
 
 </body>
 </html>
