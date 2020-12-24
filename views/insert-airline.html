@@ -85,7 +85,8 @@
             departure_T: '',
             arrival_T: '',
             departure_airport: '',
-            arrival_airport: ''
+            arrival_airport: '',
+            status: ''
         },
         created() {
         },
@@ -93,6 +94,44 @@
             add() {
                 let self = this;
                 console.log("be clicked.");
+                if(sessionStorage.getItem('company')){
+                    if(self.airline_id &&
+                        self.departure_T &&
+                        self.arrival_T &&
+                        self.departure_airport &&
+                        self.arrival_airport){
+
+                        axios.post('/insert-airline', {
+                            companyname: sessionStorage.getItem('company'),
+                            airline_id: self.airline_id,
+                            departure_T: self.departure_T,
+                            arrival_T: self.arrival_T,
+                            departure_airport: self.departure_airport,
+                            arrival_airport: self.arrival_airport
+                        }).then(function (response) {
+                            console.log(response);
+                            if(response.data.code === 200){
+                                self.status = 'ok^_^';
+                                alert(self.status);
+                                window.location.href = '/insert-airline';
+                            } else if(response.data.code === 300) {
+                                self.status = 'already exists airline_id';
+                                alert(self.status);
+                            }
+
+                        }).catch(function (error){
+                            console.log(error);
+                        });
+
+
+                    }
+                }
+                else {
+                    alert("需要先登录！");
+                    window.location.href = '/company-login';
+                }
+
+
 
             }
         }
