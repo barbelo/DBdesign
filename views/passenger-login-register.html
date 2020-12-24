@@ -16,13 +16,15 @@
 <body>
 
 
+
+
     <h1> passenger-login </h1>
     <p>Welcome to passenger-login</p>
 
-    <div id = "applogin">
+    <div id = "login">
     <div class = "ui input">
-        <input type="text" v-model = "username" placeholder="username">
-        <input type="password" v-model = "password" placeholder="password">
+        <input type="text" v-model = "username">
+        <input type="password" v-model = "password">
     </div>
 
     <button class="ui teal button" v-on:click = "login">
@@ -31,72 +33,40 @@
 
     </div>
 
-<!--    <div id = "register">-->
+    <div id = "register">
 
-<!--    <div class = "ui input">-->
-<!--        <input type="text" v-model = "username" placeholder="username">-->
-<!--        <input type="password" v-model = "password" placeholder="password">-->
-<!--        <input type="password" v-model = "repeat_password" placeholder="repeat_password">-->
-<!--    </div>-->
+    <div class = "ui input">
+        <input type="text" v-model = "username">
+        <input type="password" v-model = "password">
+        <input type="password" v-model = "repeat_password">
+    </div>
 
-<!--    <button class="ui teal button" v-on:click = "register">-->
-<!--        register-->
-<!--    </button>-->
+    <button class="ui teal button" v-on:click = "register">
+        register
+    </button>
 
-<!--    </div>-->
+    </div>
 
 <script>
-    // var vmregister = new Vue({
-    //     el: '#register',
-    //     data:{
-    //         username: '',
-    //         password: '',
-    //         repeat_password: '',
-    //         status: ''
-    //     },
-    //     created() {
-    //         selfr = this;
-    //     },
-    //     methods: {
-    //         register() {
-    //
-    //             axios.post('/passenger-login-register/userRegister', {
-    //                 username: selfr.username,
-    //                 password: selfr.password
-    //             }).then(function (response) {
-    //                 console.log(response);
-    //                 if (response.code === 200) {
-    //                     window.location.href = '/';
-    //                 } else if (response.code === 300){
-    //                     selfr.status = '用户名已经被使用'
-    //                 }
-    //
-    //             });
-    //             // }
-    //         }
-    //     }
-    // });
-    var vmlogin = new Vue({
-        el: '#applogin',
+    let vmlogin = new Vue({
+        self: this,
+        el: '#login',
         data:{
             username: '',
             password: '',
             status: ''
         },
         created() {
-            self = this;
         },
         methods: {
             login() {
-                // console.log(self);
-                // console.log(this);
-
+                let self = this;
                 if (self.username && self.password) {
-                    console.log(self.data);
                     axios.post('/passenger-login-register/userLogin', {
                         username: self.username,
                         password: self.password
                     }).then(function (response) {
+                        console.log(response);
                         if (response.code === 200) {
                             sessionStorage.setItem('flag', username);
                             window.location.href = '/search';
@@ -111,8 +81,37 @@
             }
         }
     })
+</script>
 
-
+<script>
+    let vmregister = new Vue({
+        el: '#register',
+        data:{
+            username: '',
+            password: '',
+            repeat_password: '',
+            status: ''
+        },
+        created() {
+        },
+        methods: {
+            register() {
+                    let self = this;
+                    axios.post('/passenger-login-register/userRegister', {
+                        username: self.username,
+                        password: self.password
+                    }).then(function (response) {
+                        console.log(response);
+                        if (response.code === 200) {
+                            window.location.href = '/';
+                        } else if (response.code === 300){
+                            self.status = '用户名已经被使用'
+                        }
+                    });
+                // }
+            }
+        }
+    })
 </script>
 
 </body>
