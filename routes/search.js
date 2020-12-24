@@ -24,7 +24,7 @@ router.post('/', function (req, res, next) {
     console.log("search", data);
 
     pool.getConnection(function (err, connection) {
-        //先判断该账号是否存在
+        //查询对应日期和起始站的航班
         let $sql = "select " +
             " ticket.airline_id, ticket_id, seat_id, dataa_, " +
             " departure_airport, arrival_airport, " +
@@ -88,25 +88,45 @@ router.post('/buy', function (req, res, next) {
                 connection.release();
             }
             else{
-                let $sql1 = "update ticket " +
-                    " set is_sale = true" +
-                    " where ticket_id = ?";
+                let $sql3 = "select * from orders, ticket" +
+                    " where orders.name = ?" +
+                    " and orders.ticket_id = ticket.ticket_id" +
+                    " and orders.ticket_id = ?" +
+                    " and ticket.dataa_ = ?";
+                // let $sql1 = "update ticket " +
+                //     " set is_sale = true" +
+                //     " where ticket_id = ?";
                 let $sql2 = "insert into orders VALUES(default, ?, ?)";
+                connection.query($sql3, [username, result[0].ticket_id, data], function (err3, result3){
 
-                connection.query($sql1, [result[0].ticket_id], function (err1, result1) {
-                    // console.log(err1);
-
-                    connection.query($sql2, [result[0].ticket_id, username], function (err2, result2) {
-                        console.log($sql2, [result[0].ticket_id, username]);
+                    if(result3.length > 0){
                         let resultJson = {
-                            code: 200,
-                            msg: 'success'
+                            code: 350,
+                            msg: '买过了'
                         };
-                        console.log(resultJson);
                         res.json(resultJson);
                         connection.release();
-                    });
+                    }
+                    else {
+                        // connection.query($sql1, [result[0].ticket_id], function (err1, result1) {
+                            // console.log(err1);
+
+                            connection.query($sql2, [result[0].ticket_id, username], function (err2, result2) {
+                                console.log($sql2, [result[0].ticket_id, username]);
+                                let resultJson = {
+                                    code: 200,
+                                    msg: 'success'
+                                };
+                                console.log(resultJson);
+                                res.json(resultJson);
+                                connection.release();
+                            });
+                        // });
+                    }
+
                 });
+
+
             }
         });
     });

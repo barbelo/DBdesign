@@ -116,6 +116,9 @@
                         if(response.data.code === 300){
                             self.status = '票被别人抢走了';
                             alert(self.status);
+                        } else if(response.data.code === 350){
+                            self.status = '已经买过这班飞机的票~';
+                            alert(self.status);
                         } else if(response.data.code === 200){
                             self.status = '票是你的啦^_^';
                             alert(self.status);
