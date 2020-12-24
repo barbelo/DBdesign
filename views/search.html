@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title> SEARCH </title>
+    <link rel='stylesheet' href="stylesheets/semantic.min.css" />
+    <link rel='stylesheet' href='stylesheets/style.css' />
+
+    <script src="javascripts/jquery.js"></script>
+    <script src="javascripts/vue.js"></script>
+    <script src="javascripts/axios.js"></script>
+    <script src="javascripts/semantic.min.js"></script>
+
+
+<!--    <script src="luxon.js"></script>-->
+<!--    <script src="weekstart.js"></script>-->
+<!--    <script src="vue-datetime.js"></script>-->
+
+</head>
+<body>
+<div id = "app">
+<h1>search </h1>
+<p>Welcome to SEARCH</p>
+
+<div class = "ui input">
+    <input type="text" v-model = "departure">
+    <input type="text" v-model = "arrival">
+    <input type="date" v-model = "data">
+</div>
+
+<button class="ui teal button" v-on:click = "search">
+
+    Search
+</button>
+<table class="ui basic table">
+    <thead>
+    <tr>
+        <th>Airline</th>
+        <th>seat</th>
+        <th>from_time</th>
+        <th>to_time</th>
+        <th> </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-for="x in list">
+        <td>{{ x.airline }}</td>
+        <td>{{ x.seat }}</td>
+        <td>{{ x.from_time }}</td>
+        <td>{{ x.to_time }}</td>
+        <td><button class="ui teal basic button" v-on:click="clickBuy(x)" >Buy</button></td>
+    </tr>
+
+    </tbody>
+</table>
+
+</div>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data:{
+            data: '',
+            departure: '',
+            arrival: '',
+            status: '',
+            list: []
+        },
+        created() {
+            self = this;
+        },
+        methods: {
+            search() {
+                // console.log("be clicked.");
+                if (self.departure && self.arrival && self.data) {
+                    // console.log(sessionStorage.getItem('flag'));
+                    axios.post('/search', {
+                        departure: self.departure,
+                        arrival: self.arrival,
+                        data: self.data
+                    }).then(function (response) {
+                        // console.log("get something.");
+                        // console.log(response);
+                        if(response.data.length === 0){
+                            self.status = '没查找到orz';
+                        }
+                        else {
+                            self.list = response.data;
+                        }
+
+                        // if (response.code === 200) {
+                        //     window.location.href = '/';
+                        // } else {
+                        //     self.status = '用户名或密码错误，请重新输入！';
+                        // }
+                    }).catch(function (error){
+                        console.log(error);
+                    });
+
+                }
+            },
+            clickBuy(ticket){
+                if(sessionStorage.getItem('flag')){
+
+                    axios.post('/search/buy', {
+                        username: sessionStorage.getItem('flag'),
+                        airline: ticket.airline,
+                        seat: ticket.seat,
+                        data: ticket.data
+                    }).then(function (response) {
+                        if(response.code === 300){
+                            self.status = '票被别人抢走了';
+                        } else if(response.code === 200){
+                            self.status = '票是你的啦^_^';
+                            window.location.href = '/order';
+                        }
+
+                        // if (response.code === 200) {
+                        //     window.location.href = '/';
+                        // } else {
+                        //     self.status = '用户名或密码错误，请重新输入！';
+                        // }
+                    }).catch(function (error){
+                        console.log(error);
+                    });
+
+                }
+                else {
+                    alert("需要先登录！");
+                    window.location.href = '/passenger-login-register';
+                }
+                // sessionStorage.setItem('flag', 'true');
+                // console.log();
+            }
+        }
+    })
+</script>
+
+
+</body>
+</html>
+

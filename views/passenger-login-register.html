@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title> title </title>
+    <link rel='stylesheet' href="stylesheets/semantic.min.css" />
+    <link rel='stylesheet' href='stylesheets/style.css' />
+
+    <script src="javascripts/jquery.js"></script>
+    <script src="javascripts/vue.js"></script>
+    <script src="javascripts/axios.js"></script>
+    <script src="javascripts/semantic.min.js"></script>
+
+
+</head>
+<body>
+
+
+    <h1> passenger-login </h1>
+    <p>Welcome to passenger-login</p>
+
+    <div id = "applogin">
+    <div class = "ui input">
+        <input type="text" v-model = "username" placeholder="username">
+        <input type="password" v-model = "password" placeholder="password">
+    </div>
+
+    <button class="ui teal button" v-on:click = "login">
+        login
+    </button>
+
+    </div>
+
+<!--    <div id = "register">-->
+
+<!--    <div class = "ui input">-->
+<!--        <input type="text" v-model = "username" placeholder="username">-->
+<!--        <input type="password" v-model = "password" placeholder="password">-->
+<!--        <input type="password" v-model = "repeat_password" placeholder="repeat_password">-->
+<!--    </div>-->
+
+<!--    <button class="ui teal button" v-on:click = "register">-->
+<!--        register-->
+<!--    </button>-->
+
+<!--    </div>-->
+
+<script>
+    // var vmregister = new Vue({
+    //     el: '#register',
+    //     data:{
+    //         username: '',
+    //         password: '',
+    //         repeat_password: '',
+    //         status: ''
+    //     },
+    //     created() {
+    //         selfr = this;
+    //     },
+    //     methods: {
+    //         register() {
+    //
+    //             axios.post('/passenger-login-register/userRegister', {
+    //                 username: selfr.username,
+    //                 password: selfr.password
+    //             }).then(function (response) {
+    //                 console.log(response);
+    //                 if (response.code === 200) {
+    //                     window.location.href = '/';
+    //                 } else if (response.code === 300){
+    //                     selfr.status = '用户名已经被使用'
+    //                 }
+    //
+    //             });
+    //             // }
+    //         }
+    //     }
+    // });
+    var vmlogin = new Vue({
+        el: '#applogin',
+        data:{
+            username: '',
+            password: '',
+            status: ''
+        },
+        created() {
+            self = this;
+        },
+        methods: {
+            login() {
+                // console.log(self);
+                // console.log(this);
+
+                if (self.username && self.password) {
+                    console.log(self.data);
+                    axios.post('/passenger-login-register/userLogin', {
+                        username: self.username,
+                        password: self.password
+                    }).then(function (response) {
+                        if (response.code === 200) {
+                            sessionStorage.setItem('flag', username);
+                            window.location.href = '/search';
+                        } else {
+                            self.status = '用户名或密码错误，请重新输入！';
+                        }
+                    }).catch(function (error){
+                        console.log(error);
+                    });
+
+                }
+            }
+        }
+    })
+
+
+</script>
+
+</body>
+</html>
+
