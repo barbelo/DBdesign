@@ -20,8 +20,8 @@
 
     <div id = "login">
     <div class = "ui input">
-        <input type="text" v-model = "username">
-        <input type="password" v-model = "password">
+        <input type="text" v-model = "username" placeholder="username">
+        <input type="password" v-model = "password" placeholder="password">
     </div>
 
     <button class="ui teal button" v-on:click = "login">
@@ -33,9 +33,9 @@
     <div id = "register">
 
     <div class = "ui input">
-        <input type="text" v-model = "username">
-        <input type="password" v-model = "password">
-        <input type="password" v-model = "repeat_password">
+        <input type="text" v-model = "username" placeholder="username">
+        <input type="password" v-model = "password" placeholder="password">
+        <input type="password" v-model = "repeat_password" placeholder="repeat you password">
     </div>
 
     <button class="ui teal button" v-on:click = "register">

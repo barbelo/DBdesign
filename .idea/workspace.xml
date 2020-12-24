@@ -3,10 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="8cc85de3-cd47-41b3-a166-a67c39850b8b" name="Default Changelist" comment="ok login">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/order.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/insert-new-airline.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/insert-airline.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/company-login.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/company-login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/insert-new-airline.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/insert-airline.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/passenger-login-register.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/passenger-login-register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/search.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,12 +64,23 @@
       <workItem from="1608711931468" duration="3955000" />
       <workItem from="1608797151601" duration="22439000" />
       <workItem from="1608821383466" duration="754000" />
-      <workItem from="1608822168163" duration="4802000" />
+      <workItem from="1608822168163" duration="6479000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />

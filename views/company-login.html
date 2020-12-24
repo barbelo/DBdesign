@@ -20,7 +20,7 @@
 
 <div id = "login">
     <div class = "ui input">
-        <input type="text" v-model = "username">
+        <input type="text" v-model = "companyname">
         <input type="password" v-model = "password">
     </div>
 
@@ -52,7 +52,7 @@
                         if (response.data.code === 200) {
                             console.log(response);
                             sessionStorage.setItem('company', self.companyname);
-                            window.location.href = '/insert-new-airline';
+                            window.location.href = '/insert-airline';
                         } else {
                             self.status = '用户名或密码错误，请重新输入！';
                             alert(self.status);

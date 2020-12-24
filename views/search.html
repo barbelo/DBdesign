@@ -23,15 +23,15 @@
 <p>Welcome to SEARCH</p>
 
 <div class = "ui input">
-    <input type="text" v-model = "departure">
-    <input type="text" v-model = "arrival">
-    <input type="date" v-model = "data">
+    <input type="text" v-model = "departure" placeholder="departure city">
+    <input type="text" v-model = "arrival" placeholder="arrival city">
+    <input type="date" v-model = "data" placeholder="leave day">
 </div>
 
 <button class="ui teal button" v-on:click = "search">
-
     Search
 </button>
+
 <table class="ui basic table">
     <thead>
     <tr>

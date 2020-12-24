@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title> SEARCH </title>
+    <link rel='stylesheet' href="stylesheets/semantic.min.css" />
+    <link rel='stylesheet' href='stylesheets/style.css' />
+
+    <script src="javascripts/jquery.js"></script>
+    <script src="javascripts/vue.js"></script>
+    <script src="javascripts/axios.js"></script>
+    <script src="javascripts/semantic.min.js"></script>
+
+</head>
+<body>
+<div id = "app">
+    <h1>insert </h1>
+    <p>insert new airline</p>
+
+<!--    <div class = "ui input">-->
+<!--        <input type="text" v-model = "departure">-->
+<!--        <input type="text" v-model = "arrival">-->
+<!--        <input type="date" v-model = "data">-->
+<!--    </div>-->
+
+
+    <table class="ui basic table">
+        <thead>
+        <tr>
+            <th> New airline information :</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <div class = "ui input">
+                    <input type="text" v-model = "airline_id" placeholder="airline_ID">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class = "ui input">
+                    <input type="text" v-model = "departure_airport" placeholder="departure_city">
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+        <td>
+            <div class = "ui input">
+                <input type="text" v-model = "arrival_airport" placeholder="arrival_city">
+            </div>
+        </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class = "ui input">
+                    <input type = "time" v-model = "departure_T" placeholder="departure_time">
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class = "ui input">
+                    <input type = "time" v-model = "arrival_T" placeholder="arrival_time">
+                </div>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+        <button class="ui primary button" v-on:click = "add">
+            ADD
+        </button>
+
+</div>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data:{
+            airline_id: '',
+            departure_T: '',
+            arrival_T: '',
+            departure_airport: '',
+            arrival_airport: ''
+        },
+        created() {
+        },
+        methods: {
+            add() {
+                let self = this;
+                console.log("be clicked.");
+
+            }
+        }
+    })
+</script>
+
+
+</body>
+</html>
+
