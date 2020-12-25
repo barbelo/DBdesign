@@ -8,7 +8,8 @@ var logger = require('morgan');
 //routes
 let indexRouter = require('./routes/index');   //入口
 
-let psg_login = require('./routes/passenger-login-register');  //乘客登录
+let psg_login = require('./routes/passenger-login');  //乘客登录
+let psg_register = require('./routes/passenger-register');  //乘客注册
 let cmpy_login = require('./routes/company_login');
 let search = require('./routes/search');    //查询机票 购票
 var insert_airline = require('./routes/insert-airline');  //航空公司增加航班
@@ -34,7 +35,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //路由分配
 app.use('/', indexRouter);
-app.use('/passenger-login-register', psg_login);
+app.use('/passenger-login', psg_login);
+app.use('/passenger-register', psg_register);
 app.use('/company-login', cmpy_login);
 app.use('/search', search);
 app.use('/insert-airline', insert_airline);

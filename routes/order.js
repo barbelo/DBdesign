@@ -45,11 +45,11 @@ router.post('/', function (req, res, next) {
                     departure: x.departure_airport,
                     arrival: x.arrival_airport,
                     seat:x.seat_id,
-                    data: x.dataa_
+                    day: x.dataa_
                 }));
 
-            console.log("orderresult:", resultJson);
             // console.log(resultJson);
+            console.log("orderresult:", resultJson);
             res.json(resultJson);
             connection.release();
 

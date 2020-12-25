@@ -18,9 +18,34 @@
 
 </head>
 <body>
+<div class="ui segment">
+    <h1 class="ui center aligned header">
+        PASSENGER ORDER LIST
+    </h1>
+</div>
+
 <div id="app">
-    <h1> passenger-order </h1>
-    <p>Welcome to order</p>
+    <div class="ui fluid five item menu">
+        <a class="item" href="/passenger-login">
+            passenger-login
+        </a>
+        <a class="item" href="/passenger-register">
+            passenger-register
+        </a>
+        <a class="item" href="/search">
+            search
+        </a>
+        <a class="item" href="/order">
+            orders
+        </a>
+        <a class="item" href="/company-login">
+            company
+        </a>
+<!--        <div class="text" v-model = "userstatus">-->
+
+<!--        </div>-->
+    </div>
+
     <td>
         <button class="ui teal basic button" v-on:click="show()">show order</button>
     </td>
@@ -29,8 +54,8 @@
         <thead>
         <tr>
             <th>airline</th>
-            <th>departure</th>
-            <th>arrival</th>
+            <th>departure city</th>
+            <th>arrival city</th>
             <th>day</th>
             <th>seat</th>
 <!--            <th></th>-->
@@ -42,7 +67,7 @@
             <td>{{ x.airline }}</td>
             <td>{{ x.departure }}</td>
             <td>{{ x.arrival }}</td>
-            <td>{{ x.day }}</td>
+            <td>{{ x.day.substr(0, 10) }}</td>
             <td>{{ x.seat }}</td>
 <!--            <td>-->
 <!--                <button class="ui teal basic button" v-on:click="clickBuy(x)">Buy</button>-->
@@ -62,10 +87,18 @@
         data: {
             username: '',
             status: '',
+            userstatus: '',
             list: []
         },
         created() {
+            if (sessionStorage.getItem("company")) {
+                self.userstatus = 'company:' + sessionStorage.getItem("company");
+            } else if (sessionStorage.getItem("passenger")) {
+                self.userstatus = 'passenger:' + sessionStorage.getItem("passenger");
+            } else {
 
+                self.userstatus = "un-login";
+            }
 
         },
         methods: {

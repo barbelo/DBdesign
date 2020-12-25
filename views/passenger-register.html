@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title> title </title>
+    <link rel='stylesheet' href="stylesheets/semantic.min.css" />
+    <link rel='stylesheet' href='stylesheets/style.css' />
+
+    <script src="javascripts/jquery.js"></script>
+    <script src="javascripts/vue.js"></script>
+    <script src="javascripts/axios.js"></script>
+    <script src="javascripts/semantic.min.js"></script>
+
+</head>
+<body>
+
+
+<div class="ui segment">
+
+    <h1 class="ui center aligned header">
+        PASSENGER-REGISTER
+    </h1>
+</div>
+<div class="ui fluid five item menu">
+    <a class="item" href="/passenger-login">
+        passenger-login
+    </a>
+    <a class="item" href="/passenger-register">
+        passenger-register
+    </a>
+    <a class="item" href="/search">
+        search
+    </a>
+    <a class="item" href="/order">
+        orders
+    </a>
+    <a class="item" href="/company-login">
+        company
+    </a>
+</div>
+
+
+
+<div id = "register">
+
+    <div class = "ui input">
+        <input type="text" v-model = "username" placeholder="username">
+        <input type="password" v-model = "password" placeholder="password">
+        <input type="password" v-model = "repeat_password" placeholder="repeat you password">
+    </div>
+
+    <button class="ui teal button" v-on:click = "register">
+        register
+    </button>
+
+</div>
+
+
+
+<script>
+    let vmregister = new Vue({
+        el: '#register',
+        data:{
+            username: '',
+            password: '',
+            repeat_password: '',
+            status: ''
+        },
+        created() {
+        },
+        methods: {
+            register() {
+                let self = this;
+                axios.post('/passenger-register', {
+                    username: self.username,
+                    password: self.password
+                }).then(function (response) {
+                    console.log(response);
+                    if (response.data.code === 200) {
+                        self.status = '成功注册';
+                        alert(self.status);
+                        window.location.href = '/passenger-login';
+                    } else if (response.data.code === 300){
+                        self.status = '用户名已经被使用';
+                        alert(self.status);
+                    }
+                });
+                // }
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
+

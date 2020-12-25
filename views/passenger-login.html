@@ -3,8 +3,8 @@
 <head>
 
     <title> title </title>
-    <link rel='stylesheet' href="stylesheets/semantic.min.css" />
-    <link rel='stylesheet' href='stylesheets/style.css' />
+    <link rel='stylesheet' href="stylesheets/semantic.min.css"/>
+    <link rel='stylesheet' href='stylesheets/style.css'/>
 
     <script src="javascripts/jquery.js"></script>
     <script src="javascripts/vue.js"></script>
@@ -14,10 +14,11 @@
 </head>
 <body>
 
+
 <div class="ui segment">
 
     <h1 class="ui center aligned header">
-        COMPANY-LOGIN
+        PASSENGER-LOGIN
     </h1>
 </div>
 <div class="ui fluid five item menu">
@@ -38,24 +39,25 @@
     </a>
 </div>
 
-<div id = "login">
-    <div class = "ui input">
-        <input type="text" v-model = "companyname">
-        <input type="password" v-model = "password">
+<div id="login">
+    <div class="ui input">
+        <input type="text" v-model="username" placeholder="username">
+        <input type="password" v-model="password" placeholder="password">
     </div>
 
-    <button class="ui blue button" v-on:click = "login">
+    <button class="ui teal button" v-on:click="login">
         login
     </button>
 
 </div>
 
+
 <script>
     let vmlogin = new Vue({
         self: this,
         el: '#login',
-        data:{
-            companyname: '',
+        data: {
+            username: '',
             password: '',
             status: ''
         },
@@ -64,20 +66,19 @@
         methods: {
             login() {
                 let self = this;
-                if (self.companyname && self.password) {
-                    axios.post('/company-login', {
-                        companyname: self.companyname,
+                if (self.username && self.password) {
+                    axios.post('/passenger-login', {
+                        username: self.username,
                         password: self.password
                     }).then(function (response) {
                         if (response.data.code === 200) {
                             console.log(response);
-                            sessionStorage.setItem('company', self.companyname);
-                            window.location.href = '/insert-airline';
+                            sessionStorage.setItem('passenger', self.username);
+                            window.location.href = '/search';
                         } else {
                             self.status = '用户名或密码错误，请重新输入！';
-                            alert(self.status);
                         }
-                    }).catch(function (error){
+                    }).catch(function (error) {
                         console.log(error);
                     });
 
@@ -86,6 +87,7 @@
         }
     })
 </script>
+
 
 </body>
 </html>

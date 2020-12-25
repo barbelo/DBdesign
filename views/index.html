@@ -1,11 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title> home page </title>
+      <link rel='stylesheet' href="stylesheets/semantic.min.css" />
+      <link rel='stylesheet' href='stylesheets/style.css' />
+
+      <script src="javascripts/jquery.js"></script>
+      <script src="javascripts/vue.js"></script>
+      <script src="javascripts/axios.js"></script>
+      <script src="javascripts/semantic.min.js"></script>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  <div class="ui segment">
+
+      <h1 class="ui center aligned header">
+          AIRLINE MANAGEMENT
+      </h1>
+  </div>
+  <div class="ui fluid six item menu">
+      <a class="item" href="/passenger-login">
+          passenger-login
+      </a>
+      <a class="item" href="/passenger-register">
+          passenger-register
+      </a>
+      <a class="item" href="/search">
+          search
+      </a>
+      <a class="item" href="/order">
+          orders
+      </a>
+      <a class="item" href="/company-login">
+          company
+      </a>
+      <div class="item">
+
+      </div>
+  </div>
   </body>
 </html>

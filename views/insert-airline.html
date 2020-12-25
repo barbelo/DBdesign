@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <title> SEARCH </title>
+    <title> insert-airline </title>
     <link rel='stylesheet' href="stylesheets/semantic.min.css" />
     <link rel='stylesheet' href='stylesheets/style.css' />
 
@@ -13,9 +13,33 @@
 
 </head>
 <body>
+
+<div class="ui segment">
+
+    <h1 class="ui center aligned header">
+       INSERT NEW AIRLINE
+    </h1>
+</div>
+<div class="ui fluid five item menu">
+    <a class="item" href="/passenger-login">
+        passenger-login
+    </a>
+    <a class="item" href="/passenger-register">
+        passenger-register
+    </a>
+    <a class="item" href="/search">
+        search
+    </a>
+    <a class="item" href="/order">
+        orders
+    </a>
+    <a class="item" href="/company-login">
+        company
+    </a>
+
+</div>
 <div id = "app">
-    <h1>insert </h1>
-    <p>insert new airline</p>
+
 
 <!--    <div class = "ui input">-->
 <!--        <input type="text" v-model = "departure">-->
@@ -24,7 +48,7 @@
 <!--    </div>-->
 
 
-    <table class="ui basic table">
+    <table class="ui center aligned table">
         <thead>
         <tr>
             <th> New airline information :</th>
@@ -70,11 +94,17 @@
             </td>
         </tr>
 
+        <tr>
+            <td>
+                <button class="ui primary button" v-on:click = "add">
+                    ADD
+                </button>
+            </td>
+        </tr>
+
         </tbody>
     </table>
-        <button class="ui primary button" v-on:click = "add">
-            ADD
-        </button>
+
 
 </div>
 <script>
