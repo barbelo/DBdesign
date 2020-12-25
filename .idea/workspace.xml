@@ -3,15 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="8cc85de3-cd47-41b3-a166-a67c39850b8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/order.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/passenger-login-register.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/passenger-login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/query_air_company.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/query_airline.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/query_airline_length.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/query_airline_spview.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/query_orders.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/query_passenger.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/query_ticket.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/query_ticket_airline.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/query_ticket_grpby_air.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/company-login.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/company-login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/insert-airline.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/insert-airline.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/order.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/order.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/passenger-login-register.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/passenger-login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/passenger-login.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/passenger-login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/passenger-register.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/passenger-register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +73,7 @@
       <workItem from="1608797151601" duration="22439000" />
       <workItem from="1608821383466" duration="754000" />
       <workItem from="1608822168163" duration="7463000" />
-      <workItem from="1608858104591" duration="3427000" />
+      <workItem from="1608858104591" duration="6375000" />
     </task>
     <servers />
   </component>

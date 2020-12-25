@@ -106,7 +106,7 @@
                 let self = this;
                 if (!sessionStorage.getItem("passenger")) {
                     alert("请先登录");
-                    window.location.href = '/passenger-login-register';
+                    window.location.href = '/passenger-login';
                 } else {
                     self.username = sessionStorage.getItem("passenger");
                     axios.post('/order', {
